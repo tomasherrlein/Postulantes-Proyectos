@@ -11,5 +11,6 @@ class ArchivoPostulante : public Archivo{
         Postulante leer(int posicion);
         void leerPostulantes(Postulante postulantes[], int cantidad);
         int getCantidadRegistros();
+        int getNuevoId();
 
 };

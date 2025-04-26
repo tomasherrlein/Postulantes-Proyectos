@@ -44,3 +44,7 @@ int ArchivoPostulante::getCantidadRegistros()
 
     return cantidad;
 }
+
+int ArchivoPostulante::getNuevoId(){
+    return getCantidadRegistros() + 1;
+}
