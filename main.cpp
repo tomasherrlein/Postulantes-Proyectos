@@ -6,12 +6,18 @@ using namespace std;
 int main()
 {
     ArchivoPostulante pa;
+
+    int cantidadRegistros = pa.getCantidadRegistros();
+    if (cantidadRegistros <= 0) {
+        cout << "No hay registros disponibles." << endl;
+        return 0;
+    }
         
+    cout << "Cantidad de registros: " << cantidadRegistros << endl; 
+    Postulante *postulantes = new Postulante[cantidadRegistros]; 
+    pa.leerPostulantes(postulantes, cantidadRegistros);
     
-    Postulante *postulantes = new Postulante[pa.getCantidadRegistros()]; 
-    pa.leerPostulantes(postulantes, pa.getCantidadRegistros());
-    
-    for (int i = 0; i < pa.getCantidadRegistros(); i++) {
+    for (int i = 0; i < cantidadRegistros; i++) {
         cout << postulantes[i].getNombre() << " " << postulantes[i].getApellido() << endl;
     }
 

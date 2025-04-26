@@ -5,51 +5,42 @@
 using namespace std;
 
 ArchivoPostulante::ArchivoPostulante(string nombreArchivo) 
-: _nombreArchivo(nombreArchivo)
+: Archivo(nombreArchivo)
 {
-    _pArchivo = nullptr;
 }
 
-string ArchivoPostulante::getNombreArchivo()
-{
-    return _nombreArchivo;
-}
 
 void ArchivoPostulante::guardarPostulante(Postulante postulante)
 {
-    _pArchivo = fopen(_nombreArchivo.c_str(), "ab");
     
-    if (_pArchivo == nullptr) {
+    if (!abrirEscritura()){
         return;
     }
 
     fwrite(&postulante, sizeof(Postulante), 1, _pArchivo);
-    fclose(_pArchivo);
+    cerrar();
 }
 
 void ArchivoPostulante::leerPostulantes(Postulante postulantes[], int cantidad)
 {
-    _pArchivo = fopen(_nombreArchivo.c_str(), "rb");
-    
-    if (_pArchivo == nullptr) {
+    if (!abrirLectura()){
         return;
     }
 
     fread(postulantes, sizeof(Postulante), cantidad, _pArchivo);
-    fclose(_pArchivo);
+    
+    cerrar();
 }
 
 int ArchivoPostulante::getCantidadRegistros()
 {
-    _pArchivo = fopen(_nombreArchivo.c_str(), "rb");
-    
-    if (_pArchivo == nullptr) {
+    if (!abrirLectura()){ 
         return 0;
     }
 
     fseek(_pArchivo, 0, SEEK_END);
     int cantidad = ftell(_pArchivo) / sizeof(Postulante);
-    fclose(_pArchivo);
+    cerrar();
 
     return cantidad;
 }
