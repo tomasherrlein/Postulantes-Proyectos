@@ -1,13 +1,12 @@
 #include <iostream>
-#include "PostulanteManager.h"
+#include "MenuPostulante.h"
 
 using namespace std;
 
 int main()
 {
-    PostulanteManager pm;
-
-    pm.cargarPostulante();
-    pm.mostrarPostulantes();
+    
+    MenuPostulante menuPostulante;
+    menuPostulante.aparecer();
     return 0;
 }
